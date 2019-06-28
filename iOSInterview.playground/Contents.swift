@@ -159,3 +159,23 @@ clist.next = dlist
 let newList = revertList(node: alist)
 print(newList.val)
 print(newList.next?.val)
+
+
+///  串行: 队列中只能执行一个任务
+let q_1 = DispatchQueue(label: "adf")
+q_1.async { /// 会把当前任务加入到队列之中，然后立即返回，不等等待任务
+    
+}
+q_1.sync { /// 会把任务加入到队列之中，等当前任务执行完成，线程才会继续运行 - 会阻塞线程
+    
+}
+/// 并行： 队列中可以执行多个任务
+let _ = DispatchQueue(label: "", qos: .background, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.inherit, target: nil)
+/// 系统全局 - 并行
+let _ = DispatchQueue.global()
+
+let  queue = OperationQueue()
+/// 串行
+queue.maxConcurrentOperationCount = 1
+/// 并行
+queue.maxConcurrentOperationCount = 3

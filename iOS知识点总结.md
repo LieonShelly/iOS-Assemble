@@ -313,6 +313,53 @@ objc在向一个对象发送消息时，runtime库会根据对象的isa指针找
 当源字符串是可变类型时  copy  修饰的是深拷贝   改变源字符串  不影响copy的属性内容    
 strong修饰的属性 就随着源字符串的改变而变了
 
+### App的启动过程
+打开程序, 执行main函数，执行UIApplicationMain函数，初始化UIApplicationMain函数（设置代理，开启事件循环），监听系统事件，程序结束
+#### main函数的作用
+（1）创建UIApplication对象，（2）设置应用程序代理（3）开启事件循环，处理用户事件
+
+### 进程死锁的原因
+资源竞争及进程推进顺序非法
+### 死锁的4个必要条件
+互斥，请求保持，不可剥夺，环路
+### 常用的传值方式
+1.方法传递
+2.属性传值
+3.通知传值
+4.delegate传值
+5.单例传值
+6.block传值
+7.数据存储传值
+
+### 图片缓存的思路
+- 先判断内存中(images字典中)有没有图片，
+- 如果有，则取出url对应的图片来显示，
+- 如果没有，再去沙盒缓存中查看，当然存到沙盒中都是NSData。
+- 如果沙盒缓存中有，我们取出对应的数据给Cell去显示
+- 如果沙盒中也没有图片，我们先显示占位图片。再创建operation去执行下载操作了。
+- 当然在创建operation之前，我们要判断这个operation操作是否存在
+- 如果没有下载操作，我们才需要真正的去创建operation执行下载。
+- 创建好下载操作之后应该把该操作存放到全局队列中去异步执行，同时吧操作放入operations字典中记录下来。
+- 下载完成之后：
+- 把下载好的图片放到内存中、同时存到沙盒缓存中
+- 执行完上面的操作之后回到主线程刷新表格，
+- 从operations字典中移除下载操作(防止operations越来越大，同时保证下载失败后，能重新下载)
 
 
 
+
+### Thoughtworks
+- 1.实现图片缓存机制
+- 2.单元测试
+- 3.英文介绍
+
+#### 自我介绍
+- 嗯，好的，首先介绍一下我的职业经历吧，我是从2015年开始从事ios职业开发的，至今主要积累了swift，objc相关的知识，对于APP的性能优化，用户体验有着自己一些独特的见解，
+- 当然，目前在工作中主要是使用swift来进行开发。谈谈我对swift的理解吧，我觉得swift既是一门面向对象的语言，又是一门面向协议的函数式的语言，swift支持类的封装，继承，多态，与Java这种纯粹的面向对象的语言几乎是毫无差别的，但是在swift中支持map， filter，reduce，flatmap这类去除了中间状态，数学函数式的方法，更加强调的是运算结果而不是中间过程，当然swift还有很多特点，我们可以在后续的交流中，进行下一步的讨论，
+- 接下来谈谈我对项目的理解吧，我目前开发比较喜欢使用MVVM这种设计模式和rxswift函数响应式框架，进行项目的搭建，相对于传统的mvc来说呢，这样更加易于维护和逻辑梳理吧，在项目开始之前我一般会根据产品文档进行每个功能点的罗列，按照从1到n的顺序进行排列，然后回去估计每个功能点所用到的技术以及开发时间，这样下来的话，对项目就会有个更加全面的认识和时间规划了，在项目进行中，拒绝坑队友，拒绝坑队友也是我这次出来找工作的主要原因吧
+- 当然在我是非常喜欢接触新的技术，对新的技术和框架一直充满着激情，所以在工作之外呢，我在youtube上面自学Python，学习了Python中的flask框架，pymongod，以及redis相关的知识，运用这一套所学知识呢，我自己完成了一个APP，叫做万车宝，我主要负责的是服务器后台接口这一块，现在这个APP呢，安卓和iOS都已经上线，并且也有一些特定的用户在使用了，所以我觉得学好一门新的技术或者框架最好的方法就是去实践做一个项目吧
+
+- Well, ok, let me introduce my professional experience first. I started my career in ios development in 2015.So far, I have accumulated knowledge about swift and objc. For the performance optimization of APP, the user experience has some unique insights.
+- Well, at work, I mainly use swift for development.Talk about my understanding of swift, I think swift is both an object-oriented language and a protocol-oriented functional language. Swift supports class encapsulation, inheritance, polymorphism, and almost no difference with Java's pure object-oriented language, but supports map, filter, reduce, flatmap in swift to remove intermediate state, mathematical function The method, more emphasis is on the results of the operation rather than the intermediate process, of course, swift has many features, we can carry out the next discussion in the follow-up communication,
+- Let's talk about my understanding of the project. I currently prefer to use the MVVM design pattern and the rxswift function responsive framework to build the project.Compared with the traditional mvc, it is easier to maintain and logically comb. Before the start of the project, I usually list each function point according to the product documentation, arrange it from 1 to n, and then go back and estimate the technology and development time used for each function point. If so, the project will be be a more comprehensive understanding and time planning. In the course of the project, I will reject  the pit teammates  and rejecting the pit teammates is also the main reason why I came out to find a job this time.
+-  I really like to touch new technologies, and I am always passionate about new technologies and frameworks, so outside of work, I taught myself Python on youtube, learned the flask framework in Python, pymongod, and redis-related knowledge. Using this set of knowledge, I have completed an app called Wanchebao. I am mainly responsible for the server backend data interface. Now this app, Android and iOS are online, and there are some specific users using it, so I think the best way to learn a new technology or framework is to practice a project.S
