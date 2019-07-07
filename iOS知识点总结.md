@@ -6,6 +6,9 @@
 - 单例模式：只有一个公共的实例存在（UserDefaults.standards, UIApplication.shared, UIScreen.main）
 - 观察者模式：它定义了对象之间的一种一对多的依赖关系，当一个对象的状态发生改变时，其相关依赖的对象都会得到通知并自动更新(KVO和通知中心)
 - 备忘录模式：保存对象的当前状态，并在日后可以恢复的模式
+- Viper
+- MVVM
+- MVP
 
 ### MVVM中的ViewModel的作用是什么
 - 视图层的数据提供者
