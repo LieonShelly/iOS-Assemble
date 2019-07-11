@@ -349,13 +349,6 @@ strong修饰的属性 就随着源字符串的改变而变了
 - 从operations字典中移除下载操作(防止operations越来越大，同时保证下载失败后，能重新下载)
 
 
-
-
-### Thoughtworks
-- 1.实现图片缓存机制
-- 2.单元测试
-- 3.英文介绍
-
 #### 自我介绍
 - 嗯，好的，首先介绍一下我的职业经历吧，我是从2015年开始从事ios职业开发的，至今主要积累了swift，objc相关的知识，对于APP的性能优化，用户体验有着自己一些独特的见解，
 - 当然，目前在工作中主要是使用swift来进行开发。谈谈我对swift的理解吧，我觉得swift既是一门面向对象的语言，又是一门面向协议的函数式的语言，swift支持类的封装，继承，多态，与Java这种纯粹的面向对象的语言几乎是毫无差别的，但是在swift中支持map， filter，reduce，flatmap这类去除了中间状态，数学函数式的方法，更加强调的是运算结果而不是中间过程，当然swift还有很多特点，我们可以在后续的交流中，进行下一步的讨论，
@@ -366,3 +359,19 @@ strong修饰的属性 就随着源字符串的改变而变了
 - Well, at work, I mainly use swift for development.Talk about my understanding of swift, I think swift is both an object-oriented language and a protocol-oriented functional language. Swift supports class encapsulation, inheritance, polymorphism, and almost no difference with Java's pure object-oriented language, but supports map, filter, reduce, flatmap in swift to remove intermediate state, mathematical function The method, more emphasis is on the results of the operation rather than the intermediate process, of course, swift has many features, we can carry out the next discussion in the follow-up communication,
 - Let's talk about my understanding of the project. I currently prefer to use the MVVM design pattern and the rxswift function responsive framework to build the project.Compared with the traditional mvc, it is easier to maintain and logically comb. Before the start of the project, I usually list each function point according to the product documentation, arrange it from 1 to n, and then go back and estimate the technology and development time used for each function point. If so, the project will be be a more comprehensive understanding and time planning. In the course of the project, I will reject  the pit teammates  and rejecting the pit teammates is also the main reason why I came out to find a job this time.
 -  I really like to touch new technologies, and I am always passionate about new technologies and frameworks, so outside of work, I taught myself Python on youtube, learned the flask framework in Python, pymongod, and redis-related knowledge. Using this set of knowledge, I have completed an app called Wanchebao. I am mainly responsible for the server backend data interface. Now this app, Android and iOS are online, and there are some specific users using it, so I think the best way to learn a new technology or framework is to practice a project.S
+
+
+### RxSwift学习之旅 - Action
+#####Action是observable的一个抽象库，它定义了一个动作，传入输入的事件，然后对事件进行处理，返回处理结果。它有如下特点:
+
+- 只有enabled的时候才会执行，可以传入enabledIf参数
+- 同时只能执行一个，下次input必须等上次的action执行完
+- 可以分别处理错误和next
+- Action被定义为一个类Action<Input, Element>,Input是输入的元素，Element是Action处理完之后返回的元素。
+
+```Swift
+let buttonAction: Action<Void, Void> = Action {
+    print("Doing some work")
+    return Observable.empty()
+}
+```
