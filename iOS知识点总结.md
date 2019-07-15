@@ -375,3 +375,35 @@ let buttonAction: Action<Void, Void> = Action {
     return Observable.empty()
 }
 ```
+
+### RxSwift调度器
+```
+// 后台取得数据，主线程处理结果
+DispatchQueue.global(qos: .userInitiated).async {
+    let data = try? Data(contentsOf: url)
+    DispatchQueue.main.async {
+        self.data = data
+    }
+}
+```
+
+如果用 RxSwift 来实现，大致是这样的：
+
+```
+let rxData: Observable<Data> = ...
+rxData
+    .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+    .observeOn(MainScheduler.instance)
+    .subscribe(onNext: { [weak self] data in
+        self?.data = data
+    })
+    .disposed(by: disposeBag)
+```
+
+- 用 subscribeOn 来决定数据序列的构建函数在哪个 Scheduler 上运行。
+- 用 observeOn 来决定在哪个 Scheduler 监听这个数据序列
+    
+- MainScheduler 代表主线程。如果你需要执行一些和 UI 相关的任务，就需要切换到该 Scheduler 运行。
+- SerialDispatchQueueScheduler 抽象了串行 DispatchQueue
+- ConcurrentDispathQueueScheduler 抽象了并行 DispatchQueue
+- OpertaionQueueScheduler 抽象了 NSOperationQueue, 它具备 NSOperationQueue 的一些特点，例如，可以通过设置 maxConcurrentOperationCount，来控制同时执行并发任务的最大数量。
