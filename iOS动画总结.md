@@ -1,11 +1,11 @@
 
-- [View Animations](#ViewAnimations)
+- [View Animations](#view-animations)
     
-    - [Animatable properties](#Animatableproperties)
+    - [Animatable properties](#animatable-properties)
         
-    - [frame, bounds, transform之间的关系](#frameboundstransform之间的关系)
+    - [frame bounds transform之间的关系](#frame-bounds-transform之间的关系)
         
-    -   [Animation options](#Animationoptions)
+    -   [Animation options](#Animation-options)
         
     -   [SpringAnimations](#SpringAnimations)
         
@@ -13,23 +13,23 @@
         
     -   [Keyframe](#Keyframe)
         
-- [Layer Animations](#LayerAnimations)
+- [Layer Animations](#Layer-Animations)
     
-    -   [View Animation 和 Layer Animation的区别](#ViewAnimation和LayerAnimation的区别)
+    -   [View Animation 和 Layer Animation的区别](#View-Animation-和-Layer-Animation的区别)
         
-    -   [Animation Properties](#AnimationProperties)
+    -   [Animation Properties](#Animation-Properties)
         
-    -   [postion, anchorPoint, frame, bounds之间的区别](#postionanchorPointframebounds之间的区别)
+    -   [postion anchorPoint frame bounds之间的区别](#postion-anchorPoint-frame-bounds之间的区别)
         
-    -   [fillMode: forwards, backwards, both，removed的区别](#fillModeforwardsbackwardsboth，removed的区别)
+    -   [fillMode](#fillMode:-forwards-backwards-both-removed的区别)
         
     -   [CAAnimationGroup](#CAAnimationGroup)
         
     -   [Animation easing](#Animationeasing)
         
-    -   [Layer Springs - CASpringAnimation](#LayerSprings-CASpringAnimation)
+    -   [Layer Springs - CASpringAnimation](#Layer-Springs---CASpringAnimation)
         
-    -   [Layer Keyframe Aniamtions - CAKeyframeAnimation](#LayerKeyframeAniamtions-CAKeyframeAnimation)
+    -   [Layer Keyframe Aniamtions - CAKeyframeAnimation](#Layer-Keyframe-Aniamtions---CAKeyframeAnimation)
         
 -   [Code Block](#代码块)
 
@@ -58,7 +58,7 @@
 
 - transform
 
-#### frame, bounds, transform之间的关系
+#### frame bounds transform之间的关系
 
 - frame: 当前相对父视图的坐标系的位置和大小
 
