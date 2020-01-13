@@ -21,11 +21,11 @@
         
     -   [postion anchorPoint frame bounds之间的区别](#postion-anchorPoint-frame-bounds之间的区别)
         
-    -   [fillMode](#fillMode:-forwards-backwards-both-removed的区别)
+    -   [fillMode](#fillMode)
         
     -   [CAAnimationGroup](#CAAnimationGroup)
         
-    -   [Animation easing](#Animationeasing)
+    -   [Animation easing](#Animation-easing)
         
     -   [Layer Springs - CASpringAnimation](#Layer-Springs---CASpringAnimation)
         
@@ -301,7 +301,7 @@ flyRight.fillMode = .forwards
 
 - bounds 当layer自身的坐标系的位置和大小
 
-##### fillMode: forwards, backwards, both，removed的区别
+##### fillMode
 
 - forwards: 动画结束停留在最后一帧
 
