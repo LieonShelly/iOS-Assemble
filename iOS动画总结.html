@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>iOS动画总结</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<ul>
+<li><p><a href="#ViewAnimations">View Animations</a></p>
+
+<ul>
+<li><p><a href="#Animatableproperties">Animatable properties</a></p></li>
+<li><p><a href="#frameboundstransform%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB">frame, bounds, transform之间的关系</a></p></li>
+<li><p><a href="#Animationoptions">Animation options</a></p></li>
+<li><p><a href="#SpringAnimations">SpringAnimations</a></p></li>
+<li><p><a href="#TransitionAnimations">TransitionAnimations</a></p></li>
+<li><p><a href="#Keyframe">Keyframe</a></p></li>
+</ul></li>
+<li><p><a href="#LayerAnimations">Layer Animations</a></p>
+
+<ul>
+<li><p><a href="#ViewAnimation%E5%92%8CLayerAnimation%E7%9A%84%E5%8C%BA%E5%88%AB">View Animation 和 Layer Animation的区别</a></p></li>
+<li><p><a href="#AnimationProperties">Animation Properties</a></p></li>
+<li><p><a href="#postionanchorPointframebounds%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB">postion, anchorPoint, frame, bounds之间的区别</a></p></li>
+<li><p><a href="#fillModeforwardsbackwardsboth%EF%BC%8Cremoved%E7%9A%84%E5%8C%BA%E5%88%AB">fillMode: forwards, backwards, both，removed的区别</a></p></li>
+<li><p><a href="#CAAnimationGroup">CAAnimationGroup</a></p></li>
+<li><p><a href="#Animationeasing">Animation easing</a></p></li>
+<li><p><a href="#LayerSprings-CASpringAnimation">Layer Springs - CASpringAnimation</a></p></li>
+<li><p><a href="#LayerKeyframeAniamtions-CAKeyframeAnimation">Layer Keyframe Aniamtions - CAKeyframeAnimation</a></p></li>
+</ul></li>
+<li><p><a href="#%E4%BB%A3%E7%A0%81%E5%9D%97">Code Block</a></p></li>
+</ul>
+
+<h3 id="toc_0">View Animations</h3>
+
+<div><pre><code class="language-swift"> UIView.animate(withDuration: 0.25,
+                   delay: 0,
+                   options: [],
+                   animations: {
+
+    }, completion: nil)</code></pre></div>
+
+<h4 id="toc_1">Animatable properties</h4>
+
+<ul>
+<li><p>bounds</p></li>
+<li><p>frame</p></li>
+<li><p>center</p></li>
+<li><p>backgroundColor</p></li>
+<li><p>alpha</p></li>
+<li><p>transform</p></li>
+</ul>
+
+<h4 id="toc_2">frame, bounds, transform之间的关系</h4>
+
+<ul>
+<li><p>frame: 当前相对父视图的坐标系的位置和大小</p></li>
+<li><p>bounds：自身坐标系的位置和大小，觉得subViews的frame</p></li>
+<li><p>transform 变换（位移动，缩放，旋转），transform改变时，会影响frame，不会影响bounds</p></li>
+</ul>
+
+<h4 id="toc_3">Animation options： 详见 <a href="https://developer.apple.com/documentation/uikit/uiview/animationoptions">AnimationOptions</a></h4>
+
+<div><pre><code class="language-swift">UIView.animate(withDuration: 0.5, delay: 0.4,
+  options: .repeat,
+  animations: {
+    self.password.center.x += self.view.bounds.width
+  },
+  completion: nil
+)</code></pre></div>
+
+<p>Animation easing</p>
+
+<ul>
+<li><p>curveLinear: 匀速动画</p></li>
+<li><p>.curveEaseIn: 动画开始时加速</p></li>
+<li><p>.curveEaseOut: 动画结束时，减速</p></li>
+<li><p>.curveEaseInOut: 动画开始时加速， 减速</p></li>
+</ul>
+
+<h4 id="toc_4">SpringAnimations</h4>
+
+<div><pre><code class="language-swift">UIView.animate(withDuration: 0.5, 
+                       delay: 0.5,
+        usingSpringWithDamping: 0.5, 
+        initialSpringVelocity: 0.0,
+        options: [],
+        animations: {
+          self.loginButton.center.y -= 30.0
+          self.loginButton.alpha = 1.0
+        }, completion: nil)</code></pre></div>
+
+<ul>
+<li><p>usingSpringWithDamping:  取值在 0 ~ 1.0，值越大，弹簧的刚度越大</p></li>
+<li><p>initialSpringVelocity:  控制动画的初始速度。 值1.0设置动画的速度以覆盖动画的总距离（在一秒的跨度内）。 较大和较小的值将导致动画具有或多或少的速度。</p></li>
+</ul>
+
+<h4 id="toc_5">TransitionAnimations</h4>
+
+<p>用于转场的动画Options</p>
+
+<ul>
+<li><p>.transitionFlipFromLeft </p></li>
+<li><p>.transitionFlipFromRight </p></li>
+<li><p>.transitionCurlUp</p></li>
+<li><p>.transitionCurlDown </p></li>
+<li><p>.transitionCrossDissolve</p></li>
+<li><p>.transitionFlipFromTop </p></li>
+<li><p>.transitionFlipFromBottom</p></li>
+</ul>
+
+<h5 id="toc_6">使用转场动画的场景：</h5>
+
+<ul>
+<li><p>添加View时</p>
+
+<div><pre><code class="language-swift">UIView.transition(with: animationContainerView,
+                duration: 0.33,
+                options: [.curveEaseOut, .transitionFlipFromBottom],
+                animations: {
+                    self.animationContainerView.addSubview(newView)
+                },
+                completion: nil
+)</code></pre></div></li>
+<li><p>移除View时</p>
+
+<div><pre><code class="language-swift">UIView.transition(with: animationContainerView, 
+                duration: 0.33,
+               options: [.curveEaseOut, .transitionFlipFromBottom],
+            animations: {
+              self.newView.removeFromSuperview()
+            },
+             completion: nil
+)</code></pre></div></li>
+<li><p>隐藏或显示View时</p>
+
+<div><pre><code class="language-swift">UIView.transition(with: self.newView, 
+            duration: 0.33,
+             options: [.curveEaseOut, .transitionFlipFromBottom],
+           animations: {
+          self.newView.isHidden = true
+        },
+            completion: nil
+)</code></pre></div></li>
+<li><p>替换View时</p>
+
+<div><pre><code class="language-swift">UIView.transition(from: oldView, 
+                    to: newView, 
+                    duration: 0.33,
+                  options: 
+                  .transitionFlipFromTop,
+                   completion: nil)</code></pre></div></li>
+</ul>
+
+<h4 id="toc_7">Keyframe</h4>
+
+<ul>
+<li>options:  详情查看UIViewKeyframeAnimationOptions</li>
+</ul>
+
+<div><pre><code class="language-swift"> UIView.animateKeyframes(withDuration: 1.5, delay: 0.0, animations: {
+      //add keyframes
+      UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.25, animations: {
+        self.planeImage.center.x += 80.0
+        self.planeImage.center.y -= 10.0
+      })
+
+      UIView.addKeyframe(withRelativeStartTime: 0.1, relativeDuration: 0.4) {
+        self.planeImage.transform = CGAffineTransform(rotationAngle: -.pi / 8)
+      }
+
+      UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25) {
+        self.planeImage.center.x += 100.0
+        self.planeImage.center.y -= 50.0
+        self.planeImage.alpha = 0.0
+      }
+
+      UIView.addKeyframe(withRelativeStartTime: 0.51, relativeDuration: 0.01) {
+        self.planeImage.transform = .identity
+        self.planeImage.center = CGPoint(x: 0.0, y: originalCenter.y)
+      }
+
+      UIView.addKeyframe(withRelativeStartTime: 0.55, relativeDuration: 0.45) {
+        self.planeImage.alpha = 1.0
+        self.planeImage.center = originalCenter
+      }
+    }, completion: nil)</code></pre></div>
+
+<h3 id="toc_8">Layer Animations</h3>
+
+<h4 id="toc_9">View Animation 和 Layer Animation的区别</h4>
+
+<ul>
+<li><p>layer与View（就动画而言）不同，原因如下：</p>
+
+<ul>
+<li><p>图层是模型对象–它公开数据属性并且不实现任何逻辑。 它没有复杂的自动版式依赖性，也没有处理用户交互。</p></li>
+<li><p>它具有预定义的可见特征-这些特征是许多数据属性，它们会影响内容在屏幕上的呈现方式，例如边界线，边界颜色，位置和阴影。（预先会绘制一个layer）</p></li>
+<li><p>Core Animation直接在GPU上优化了图层内容的缓存和快速绘制。</p></li>
+</ul></li>
+</ul>
+
+<h5 id="toc_10">Views</h5>
+
+<ul>
+<li><p>视图布局，层级复杂</p></li>
+<li><p>存在用户用户交互</p></li>
+<li><p>通常具有在CPU的主线程上执行的自定义逻辑或自定义绘图代码</p></li>
+<li><p>非常灵活，强大，有很多子类可以继承</p></li>
+</ul>
+
+<h5 id="toc_11">Layers</h5>
+
+<ul>
+<li><p>层次结构简单，布局解析速度快，绘制速度快。</p></li>
+<li><p>没有响应者链开销。</p></li>
+<li><p>默认情况下没有自定义逻辑。 并直接在GPU上绘制。</p></li>
+<li><p>不够灵活，子类继承较少</p></li>
+</ul>
+
+<h5 id="toc_12">Layer动画流程</h5>
+
+<p>设置Layer动画时，控件本身本身不具有动画效果，当动画开始时，预先渲染的动画layer（<strong>presentation layer</strong>）将会替代控件，同时控件暂时隐藏，动画过程中不能交互</p>
+
+<p>动画完成后  <strong>presentation layer</strong> 将从屏幕上删除，原始Layer再次显示自己。（动画结束需要更新layer的属性值为动画结束时的值）</p>
+
+<h4 id="toc_13">Animation Properties</h4>
+
+<ul>
+<li><p>bounds</p></li>
+<li><p>postion: position.x position.y</p></li>
+<li><p>transform :transform.scale(x, y, z), transform.roate(x, y, z)</p></li>
+<li><p>border: boorderWidth, backroudClolor, borderColor, corner</p></li>
+<li><p>shadow: shadowOffset, shadowOpacity, shadowPath, shadowRadius</p></li>
+<li><p>contents</p></li>
+<li><p>mask</p></li>
+<li><p>opacity</p></li>
+<li><p>path</p></li>
+<li><p>strokeEnd</p></li>
+<li><p>strokeStart</p></li>
+</ul>
+
+<div><pre><code class="language-swift">let flyRight = CABasicAnimation(keyPath: &quot;position.x&quot;)
+flyRight.fromValue = -view.bounds.size.width / 2
+flyRight.toValue = view.bounds.size.width / 2
+flyRight.fillMode = .forwards</code></pre></div>
+
+<h5 id="toc_14">postion, anchorPoint, frame, bounds之间的区别</h5>
+
+<ul>
+<li><p>anchorPoint(锚点): 视图的几何操作（旋转，平移，缩放）的中心，</p></li>
+<li><p>position 是相对layer的anchoorPoint 相对于superLayer的位置，即View的center</p>
+
+<div><pre><code class="language-none">postion.x = frame.origin.x + anchorPont.x * frame.width
+postion.y = frame.origin.y + anchorPont.y * frame.height</code></pre></div></li>
+<li><p>frame 当前layer相对superLayer的位置和大小, 最终由View体现</p>
+
+<div><pre><code class="language-swift">frame.x = postion.x - anchorPont.x * frame.width
+frame.y = postion.y - anchorPont.y * frame.height</code></pre></div></li>
+<li><p>bounds 当layer自身的坐标系的位置和大小</p></li>
+</ul>
+
+<h5 id="toc_15">fillMode: forwards, backwards, both，removed的区别</h5>
+
+<ul>
+<li><p>forwards: 动画结束停留在最后一帧</p></li>
+<li><p>backwards：动画开始前，处于动画的第一帧</p></li>
+<li><p>both：结合了forwards与backwards的特点，即动画开始前，处于动画的第一帧，动画结束停留在最后一帧</p></li>
+<li><p>removed：动画结束，移除动画</p></li>
+</ul>
+
+<h5 id="toc_16">CAAnimationGroup</h5>
+
+<div><pre><code class="language-swift">let groupAnimation = CAAnimationGroup()
+groupAnimation.beginTime = CACurrentMediaTime() + 0.5
+groupAnimation.duration = 0.5
+groupAnimation.fillMode = .backwards
+group.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)let scaleDown = CABasicAnimation(keyPath: &quot;transform.scale&quot;)s
+caleDown.fromValue = 3.5
+scaleDown.toValue = 1.0
+let rotate = CABasicAnimation(keyPath: &quot;transform.rotation&quot;)
+rotate.fromValue = .pi / 4.0
+rotate.toValue = 0.0
+let fade = CABasicAnimation(keyPath: &quot;opacity&quot;)fade.fromValue = 0.0
+fade.toValue = 1.0
+groupAnimation.animations = [scaleDown, rotate, fade]</code></pre></div>
+
+<h4 id="toc_17">Animation easing</h4>
+
+<ul>
+<li><p><strong>EaseIn</strong></p>
+
+<p><img src="/Users/lieon/Desktop/Demo/iOS-Assemble/Files/AnimationFiles/easeIn.png" alt=""></p></li>
+<li><p><a href="">*</a><em>EaseOut</em>*</p></li>
+</ul>
+
+<p><img src="/Users/lieon/Desktop/Demo/iOS-Assemble/Files/AnimationFiles/easeOut.png" alt=""></p>
+
+<ul>
+<li><strong>EaseInEaseOut</strong></li>
+</ul>
+
+<p>    <img src="/Users/lieon/Desktop/Demo/iOS-Assemble/Files/AnimationFiles/easeInEaseOut.png" alt=""></p>
+
+<h4 id="toc_18">More timing options</h4>
+
+<ul>
+<li><p>Repeating animations</p>
+
+<div><pre><code class="language-swift">flyLeft.repeatCount = 4
+flyLeft.autoreverses = true</code></pre></div></li>
+<li><p>Change the animation speed</p>
+
+<div><pre><code class="language-swift">flyLeft.speed = 2.0</code></pre></div></li>
+</ul>
+
+<h3 id="toc_19">Layer Springs - CASpringAnimation</h3>
+
+<ul>
+<li><p>damping: 阻尼系数， 阻止弹簧伸缩的系数，阻尼系数越大，停止越快</p></li>
+<li><p>mass: 运动的质量，影响图层运动时的弹簧惯性，质量越大，弹簧拉伸和压缩的幅度越大, 默认为1.0</p></li>
+<li><p>stiffness:  刚度，默认为100，为正，为0时，弹性越软，值越大，弹性越硬</p></li>
+<li><p>initialVelocity： 初始的速度，速率为正数时，速度方向与运动方向一致，速率为负数时，速度方向与运动方向相反</p></li>
+<li><p>settlingDuration 估算时间 返回弹簧动画到停止时的估算时间，根据当前的动画参数估算</p></li>
+</ul>
+
+<div><pre><code class="language-swift">let jump = CASpringAnimation(keyPath: &quot;position.y&quot;)
+jump.initialVelocity = 100.0
+jump.mass = 10.0
+jump.stiffness = 1500.0
+jump.damping = 50.0
+jump.fromValue = textField.layer.position.y + 1.0
+jump.toValue = textField.layer.position.y
+jump.duration = jump.settlingDuration
+
+let flash = CASpringAnimation(keyPath: &quot;borderColor&quot;)
+flash.damping = 7.0
+flash.stiffness = 200.0
+flash.fromValue = UIColor(red: 1.0, green: 0.27, blue: 0.0, alpha:
+1.0).cgColor
+flash.toValue = UIColor.white.cgColor
+flash.duration = flash.settlingDuration
+textField.layer.add(flash, forKey: nil)</code></pre></div>
+
+<h3 id="toc_20">Layer Keyframe Aniamtions - CAKeyframeAnimation</h3>
+
+<h4 id="toc_21">几个重要的属性</h4>
+
+<ul>
+<li><p>values： 动画的值</p></li>
+<li><p>path：动画的路径</p></li>
+<li><p>keyTimes：帧时长</p></li>
+<li><p>timingFunctions：帧时间函数</p></li>
+<li><p>calculationMode: 帧计算模式</p></li>
+</ul>
+
+<div><pre><code class="language-swift">let wobble = CAKeyframeAnimation(keyPath: &quot;transform.rotation&quot;)
+wobble.duration = 0.25
+wobble.repeatCount = 4
+wobble.values = [0.0, -.pi/4.0, 0.0, .pi/4.0, 0.0]
+wobble.keyTimes = [0.0, 0.25, 0.5, 0.75, 1.0]
+heading.layer.add(wobble, forKey: nil)</code></pre></div>
+
+<h3 id="toc_22">代码块</h3>
+
+<p><img src="Files/AnimationFiles/bouds_to_cycle.gif" alt=""></p>
+
+<div><pre><code class="language-swift">/// 矩形变为圆形动画
+ fileprivate func circularAnimations() {
+     let groupAnimation = CAAnimationGroup()
+     groupAnimation.beginTime = CACurrentMediaTime()
+     groupAnimation.duration = 0.1
+     groupAnimation.fillMode = &quot;forwards&quot;
+     groupAnimation.isRemovedOnCompletion = false
+     
+     let bounds = CABasicAnimation(keyPath: &quot;bounds&quot;)
+     bounds.fromValue = gradientLayer.bounds
+     bounds.toValue = layerBoundsInView
+   
+     let cornerRadius = CABasicAnimation(keyPath: &quot;cornerRadius&quot;)
+     cornerRadius.timingFunction = CAMediaTimingFunction(name: &quot;linear&quot;)
+     cornerRadius.fromValue = 8
+     cornerRadius.toValue = UISize.btnHeight * 0.5                                   
+     groupAnimation.animations = [bounds, cornerRadius]
+     gradientLayer.add(groupAnimation, forKey: &quot;group&quot;)
+ }</code></pre></div>
+
+<div><pre><code class="language-swift">   /// 打钩画，
+   /// 1.绘制出勾勾的路径 
+   /// 2.用shapelayer的strokeEnd做动画
+   func showAnimation() {
+        shapelayer.strokeEnd = 1
+        let group = CAAnimationGroup()
+        group.duration = 0.25
+        group.isRemovedOnCompletion = false
+        group.fillMode = .forwards
+        group.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+
+        let strokeEnd = CABasicAnimation(keyPath: &quot;strokeEnd&quot;)
+        strokeEnd.fromValue = 0
+        strokeEnd.toValue = 1
+        strokeEnd.duration = 0.25
+        strokeEnd.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+
+        let scale = CABasicAnimation(keyPath: &quot;transform.scale&quot;)
+        scale.fromValue = 1
+        scale.toValue = 1.2
+        scale.fillMode = .forwards
+        scale.isRemovedOnCompletion = false
+        scale.duration = 0.1
+
+        group.animations = [strokeEnd]
+        shapelayer.add(group, forKey: nil)
+
+        scale.beginTime = CACurrentMediaTime() + 0.25
+        scale.fromValue = 1
+        scale.toValue = 0.9
+        scale.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        shapelayer.add(scale, forKey: nil)
+    }</code></pre></div>
+
+<p><img src="Files/AnimationFiles/breath.gif" alt=""></p>
+
+<div><pre><code class="language-swift">/// 呼吸动画
+ func showAniamtion() {
+     let scale = CAKeyframeAnimation(keyPath: &quot;transform.scale&quot;)
+     scale.repeatCount = MAXFLOAT
+     scale.values = [1, 1.3, 1]
+     scale.keyTimes = [0, 0.5, 1]
+     scale.duration = 1.5
+     scale.beginTime = 0.25
+     layer.add(scale, forKey: &quot;scale&quot;)
+ }</code></pre></div>
+
+<p><img src="Files/AnimationFiles/cycle_appear.gif" alt=""></p>
+
+<div><pre><code class="language-swift">/// 圈圈的出现动画
+func show() {
+     let group = CAAnimationGroup()
+     group.timingFunction = CAMediaTimingFunction(name: &quot;easeInEaseOut&quot;)
+     group.fillMode = &quot;backwards&quot;
+     group.isRemovedOnCompletion = false
+     group.setValue(&quot;show&quot;, forKey: &quot;name&quot;)
+     group.delegate = self
+     group.duration = 0.3
+     let scale = CAKeyframeAnimation(keyPath: &quot;transform.scale&quot;)
+     scale.values = [0, 1.5, 1]
+     scale.duration = 0.3
+     scale.calculationMode = &quot;linear&quot;
+     let opacity = CABasicAnimation(keyPath: &quot;opacity&quot;)
+     opacity.fromValue = 0
+     opacity.toValue = 1
+     opacity.duration = 0.3
+     group.animations = [scale, opacity]
+     dot1.layer.add(group, forKey: nil)
+}</code></pre></div>
+
+<p><img src="Files/AnimationFiles/cyc_disappear.gif" alt=""></p>
+
+<div><pre><code class="language-swift">/// 圈圈的消失动画
+ func endShow(_ dotType: DotType = .double, 
+             completion: ((Bool) -&gt; Void)? = nil) {
+    let dismissGroup = CAAnimationGroup()
+    dismissGroup.timingFunction = CAMediaTimingFunction(name: &quot;linear&quot;)
+    dismissGroup.fillMode = &quot;forwards&quot;
+    dismissGroup.isRemovedOnCompletion = false
+    dismissGroup.duration = 0.15
+    dismissGroup.delegate = self
+    dismissGroup.setValue(&quot;dismissGroup&quot;, forKey: &quot;name&quot;)
+    let dismissOpacity = CABasicAnimation(keyPath: &quot;opacity&quot;)
+    dismissOpacity.fromValue = 1
+    dismissOpacity.toValue = 0
+    
+    let scale = CABasicAnimation(keyPath: &quot;transform.scale&quot;)
+    scale.fromValue = 1
+    scale.toValue = 1.5
+    dismissGroup.animations = [scale, dismissOpacity]
+    self.animationCompletion = completion
+    dot1.layer.add(dismissGroup, forKey: nil)
+ }</code></pre></div>
+
+<div><pre><code class="language-swift">    /// 切换layer动画
+  fileprivate func exchangeSuperLayer() {
+        let gradientBounds = gradientLayer.convert(gradientLayer.bounds, to: self.layer)
+        gradientLayer.removeFromSuperlayer()
+        bottomShadowLayer.removeFromSuperlayer()
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        gradientLayer.frame = gradientBounds
+        CATransaction.commit()
+        layer.addSublayer(gradientLayer)
+        layerBoundsInView = CGRect(x: gradientBounds.origin.x + gradientBounds.width/2 -  UISize.btnHeight * 0.5, y: gradientBounds.origin.y, width:  UISize.btnHeight, height:  UISize.btnHeight)
+    }
+
+    /// 曲线移动动画
+    fileprivate func moveToNavAnimation() {
+        let position = CAKeyframeAnimation(keyPath: &quot;position&quot;)
+        position.fillMode = &quot;forwards&quot;
+        position.isRemovedOnCompletion = false
+        let fromPoint = CGPoint(x: layerBoundsInView.origin.x +  
+                                    UISize.btnHeight * 0.5,
+                                y: layerBoundsInView.origin.y +  
+                                    UISize.btnHeight * 0.5)
+        let endPoint = CGPoint(x: destinationRect.origin.x +  
+                                    UISize.btnHeight * 0.5,
+                               y: destinationRect.origin.y +  
+                                   UISize.btnHeight * 0.5)
+        let path = UIBezierPath()
+        path.move(to: fromPoint)
+        let controlPoint1 = CGPoint(x: fromPoint.x + 100, y: fromPoint.y     - 100)
+        path.addCurve(to: endPoint, controlPoint1: controlPoint1, controlPoint2: endPoint)
+        position.path = path.cgPath
+        position.duration = 0.3
+        position.timingFunction = CAMediaTimingFunction(name: &quot;easeInEaseOut&quot;)
+        gradientLayer.add(position, forKey: &quot;position&quot;)
+    }</code></pre></div>
+
+<h4 id="toc_23">渐变色圈圈</h4>
+
+<p><img src="Files/gradient_cycle.png" alt="Alt text"></p>
+
+<div><pre><code class="language-swift">/// 线宽决定圈圈的大小
+shapeLapyer.lineWidth = destinationRect.height
+shapeLapyer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: destinationRect.height, height: destinationRect.height), cornerRadius: destinationRect.height * 0.5).cgPath
+gradientLayer.frame = destinationRect
+gradientLayer.removeAllAnimations()
+gradientLayer.mask = shapeLapyer
+gradientLayer.cornerRadius = destinationRect.height * 0.5
+
+/// 或者可以设置borderWidth
+shapeLapyer.borderWidth = 1
+shapeLapyer.cornerRadius =  destinationRect.height * 0.5
+shapeLapyer.frame = CGRect(x: 0, y: 0, width: destinationRect.height, height: destinationRect.height)</code></pre></div>
+
+
+
+
+</body>
+
+</html>

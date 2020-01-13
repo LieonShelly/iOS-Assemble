@@ -1,38 +1,37 @@
-- [ViewAnimations](#View Animations) 
-  
-  - [Animatable properties](#Animatable properties)
-  
-  - [frame, bounds, transform之间的关系](#frame, bounds, transform之间的关系)
-  
-  - [Animation options](#Animation options)
-  
-  - [SpringAnimations](#SpringAnimations)
-  
-  - [TransitionAnimations](#TransitionAnimations)
-  
-  - [Keyframe](#Keyframe)
 
-- [Layer Animations](#Layer Animations)
-  
-  - [View Animation 和 Layer Animation的区别](#View Animation 和 Layer Animation的区别)
-  
-  - [Animation Properties](#Animation Properties)
-  
-  - [postion, anchorPoint, frame, bounds之间的区别](#postion, anchorPoint, frame, bounds之间的区别)
-  
-  - [fillMode: forwards, backwards, both，removed的区别](#fillMode: forwards, backwards, both，removed的区别)
-  
-  - [CAAnimationGroup](#CAAnimationGroup)
-  
-  - [Animation easing](#Animation easing)
-  
-  - [Layer Springs - CASpringAnimation](#Layer Springs - CASpringAnimation)
-  
-  - [Layer Keyframe Aniamtions - CAKeyframeAnimation](#Layer Keyframe Aniamtions - CAKeyframeAnimation)
-
-- [Code Block](#代码块)
-  
-  
+- [View Animations](#ViewAnimations)
+    
+    - [Animatable properties](#Animatableproperties)
+        
+    - [frame, bounds, transform之间的关系](#frameboundstransform之间的关系)
+        
+    -   [Animation options](#Animationoptions)
+        
+    -   [SpringAnimations](#SpringAnimations)
+        
+    -   [TransitionAnimations](#TransitionAnimations)
+        
+    -   [Keyframe](#Keyframe)
+        
+- [Layer Animations](#LayerAnimations)
+    
+    -   [View Animation 和 Layer Animation的区别](#ViewAnimation和LayerAnimation的区别)
+        
+    -   [Animation Properties](#AnimationProperties)
+        
+    -   [postion, anchorPoint, frame, bounds之间的区别](#postionanchorPointframebounds之间的区别)
+        
+    -   [fillMode: forwards, backwards, both，removed的区别](#fillModeforwardsbackwardsboth，removed的区别)
+        
+    -   [CAAnimationGroup](#CAAnimationGroup)
+        
+    -   [Animation easing](#Animationeasing)
+        
+    -   [Layer Springs - CASpringAnimation](#LayerSprings-CASpringAnimation)
+        
+    -   [Layer Keyframe Aniamtions - CAKeyframeAnimation](#LayerKeyframeAniamtions-CAKeyframeAnimation)
+        
+-   [Code Block](#代码块)
 
 ### View Animations
 
@@ -315,11 +314,13 @@ flyRight.fillMode = .forwards
 ##### CAAnimationGroup
 
 ```swift
-let groupAnimation = CAAnimationGroup()groupAnimation.beginTime = CACurrentMediaTime() + 0.5
+let groupAnimation = CAAnimationGroup()
+groupAnimation.beginTime = CACurrentMediaTime() + 0.5
 groupAnimation.duration = 0.5
 groupAnimation.fillMode = .backwards
 group.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)let scaleDown = CABasicAnimation(keyPath: "transform.scale")s
-caleDown.fromValue = 3.5scaleDown.toValue = 1.0
+caleDown.fromValue = 3.5
+scaleDown.toValue = 1.0
 let rotate = CABasicAnimation(keyPath: "transform.rotation")
 rotate.fromValue = .pi / 4.0
 rotate.toValue = 0.0
@@ -347,7 +348,8 @@ groupAnimation.animations = [scaleDown, rotate, fade]
 - Repeating animations
   
   ```swift
-  flyLeft.repeatCount = 4flyLeft.autoreverses = true
+  flyLeft.repeatCount = 4
+  flyLeft.autoreverses = true
   ```
 
 - Change the animation speed
