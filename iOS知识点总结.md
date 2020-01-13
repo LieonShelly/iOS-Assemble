@@ -23,6 +23,14 @@
 
 - transform
 
+#### frame, bounds, transform之间的关系
+
+- frame: 当前相对父视图的坐标系的位置和大小
+
+- bounds：自身坐标系的位置和大小，觉得subViews的frame
+
+- transform 变换（位移动，缩放，旋转），transform改变时，会影响frame，不会影响bounds
+
 #### Animation options： 详见 [AnimationOptions](https://developer.apple.com/documentation/uikit/uiview/animationoptions)
 
 ```swift
@@ -244,7 +252,9 @@ flyRight.fillMode = .forwards
 
 ##### postion, anchorPoint, frame, bounds, center之间的区别
 
-- position 是相对layer的anchoorPoint 相对于superLayer的位置
+- anchorPoint(锚点): 视图的几何操作（旋转，平移，缩放）的中心，
+
+- position 是相对layer的anchoorPoint 相对于superLayer的位置，即View的center
   
   ```
   postion.x = frame.origin.x + anchorPont.x * frame.width
@@ -254,11 +264,11 @@ flyRight.fillMode = .forwards
 - frame 当前layer相对superLayer的位置和大小, 最终由View体现
   
   ```swift
-  frame.x = frame.origin.x + anchorPont.x * frame.width
-  postion.y = frame.origin.y + anchorPont.y * frame.height
+  frame.x = postion.x - anchorPont.x * frame.width
+  frame.y = postion.y - anchorPont.y * frame.height
   ```
-  
-  
+
+- bounds 当layer自身的坐标系的位置和大小
 
 ##### fillMode: forwards, backwards, both，removed的区别
 
@@ -347,6 +357,18 @@ textField.layer.add(flash, forKey: nil)
 ```
 
 ### Layer Keyframe Aniamtions - CAKeyframeAnimation
+
+#### 几个重要的属性
+
+- values： 动画的值
+
+- path：动画的路径
+
+- keyTimes：帧时长
+
+- timingFunctions：帧时间函数
+
+- calculationMode: 帧计算模式
 
 ```swift
 let wobble = CAKeyframeAnimation(keyPath: "transform.rotation")
